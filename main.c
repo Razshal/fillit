@@ -6,7 +6,7 @@
 /*   By: abouvero <abouvero@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/16 11:22:08 by abouvero          #+#    #+#             */
-/*   Updated: 2017/12/08 13:40:31 by abouvero         ###   ########.fr       */
+/*   Updated: 2017/12/08 15:02:49 by mfonteni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int				main(int argc, char **argv)
 	tetriminos = NULL;
 	if (argc != 2)
 	{
-		ft_putstr("usage: ./fillit sample_file\n");
+		ft_putstr("usage: ./fillit tetriminos_file\n");
 		return (1);
 	}
 	tetriminos = check_parse(argv[1]);

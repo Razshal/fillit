@@ -26,19 +26,19 @@ static int		ft_charchr(char *str, char c)
 	return (0);
 }
 
-static int		get_i(int i, int dir, char *parsed, int diese)
+static int		get_i(int i, int dir, char *parsed, int hash)
 {
 	if (dir == 5)
-		parsed[diese] = 'd';
+		parsed[hash] = 'd';
 	else if (dir == -1)
-		parsed[diese] = 'l';
+		parsed[hash] = 'l';
 	else if (dir == 1)
-		parsed[diese] = 'r';
+		parsed[hash] = 'r';
 	else if (dir == -5)
-		parsed[diese] = 'u';
+		parsed[hash] = 'u';
 	else if (dir == 0)
 	{
-		parsed[diese] = 'b';
+		parsed[hash] = 'b';
 		return (0);
 	}
 	return (i + dir);
@@ -64,18 +64,18 @@ static int		get_topleft(char **tab)
 	return (0);
 }
 
-static int		back_parser(char *block, int *coo, char *parsed, int diese)
+static int		back_parser(char *block, int *coo, char *parsed, int hash)
 {
 	if (!ft_charchr(block, '#'))
 		return (0);
-	parsed[diese] = 'b';
-	return (coo[diese - 1]);
+	parsed[hash] = 'b';
+	return (coo[hash - 1]);
 }
 
 char			*block_parser(char *b)
 {
 	int		i;
-	int		diese;
+	int		hash;
 	int		coo[4];
 	char	*parsed;
 
@@ -83,19 +83,19 @@ char			*block_parser(char *b)
 		return (parsed);
 	parsed = ft_strnew(4);
 	i = get_topleft(ft_strsplit(b, '\n'));
-	diese = -1;
-	while (++diese < 4 && (b[i] = '.'))
+	hash = -1;
+	while (++hash < 4 && (b[i] = '.'))
 	{
-		coo[diese] = i;
+		coo[hash] = i;
 		if (b[i + 5] == '#')
-			i = get_i(i, 5, parsed, diese);
+			i = get_i(i, 5, parsed, hash);
 		else if (b[i - 1] == '#')
-			i = get_i(i, -1, parsed, diese);
+			i = get_i(i, -1, parsed, hash);
 		else if (b[i + 1] == '#')
-			i = get_i(i, 1, parsed, diese);
+			i = get_i(i, 1, parsed, hash);
 		else if (b[i - 5] == '#')
-			i = get_i(i, -5, parsed, diese);
-		else if (!(i = back_parser(b, coo, parsed, diese)))
+			i = get_i(i, -5, parsed, hash);
+		else if (!(i = back_parser(b, coo, parsed, hash)))
 			return (parsed);
 	}
 	return (parsed);
